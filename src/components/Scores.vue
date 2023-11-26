@@ -6,7 +6,7 @@ import { ref, onMounted } from 'vue';
 
 //teamName
 
-const props = defineProps(['teamName', 'socket']);
+const props = defineProps(['teamName']);
 
 console.log(props.socket);
 
@@ -30,6 +30,7 @@ const points = ref(0);
 
 onMounted(() => {
     //points
+    const socket = new WebSocket('ws://localhost:3000/primus');
     const addBtn = document.querySelector(`.${props.teamName.toLowerCase()} .btn #addPoint`);
 
     if (addBtn) {
@@ -40,7 +41,7 @@ onMounted(() => {
                 points: points.value,
                 action: "updatePoints"
             };
-            props.socket.send(JSON.stringify(point));
+            socket.send(JSON.stringify(point));
             
         });
     }
@@ -54,7 +55,7 @@ onMounted(() => {
                 points: points.value,
                 action: "updatePoints"
             };
-            props.socket.send(JSON.stringify(point));
+            socket.send(JSON.stringify(point));
         });
     }
 
@@ -69,7 +70,7 @@ onMounted(() => {
             timeout: true,
             action: "updateTimeout"
         };
-        props.socket.send(JSON.stringify(timeOut));
+       socket.send(JSON.stringify(timeOut));
         // Reset the innerHTML to an empty string after 30 seconds
         setTimeout(() => {
             timeout.innerHTML = '';
@@ -78,7 +79,7 @@ onMounted(() => {
                 timeout: false,
                 action: "updateTimeout"
             };
-        props.socket.send(JSON.stringify(timeOut));
+       socket.send(JSON.stringify(timeOut));
         }, 30000);
     });
 

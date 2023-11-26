@@ -1,6 +1,5 @@
 <script setup>
 import Scores from './components/Scores.vue'
-import Socket from './components/Websocket.js'
 
 
 
@@ -9,10 +8,10 @@ import Socket from './components/Websocket.js'
 <template>
   <div id="teams">
     <div id="teamA">
-      <Scores teamName="team1" :socket="Socket"/>
+      <Scores teamName="team1"/>
       </div>
     <div id="teamB">
-      <Scores teamName="team2" :socket="Socket"/>
+      <Scores teamName="team2"/>
     </div>
   </div>
 </template>
