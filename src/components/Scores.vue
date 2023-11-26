@@ -2,9 +2,9 @@
 import DropdownTeam from './DropdownTeam.vue';
 import { ref, onMounted } from 'vue';
 
+//teamName
+
 const props = defineProps(['teamName']);
-
-
 
 const parentSelectedTeam = ref('');
 
@@ -15,8 +15,19 @@ const updateTeam = (value, teamName) => {
   }
 };
 
+//points
+const points = ref(0);
 
-    
+onMounted(() => {
+    const addBtn = document.querySelector(`.${props.teamName.toLowerCase()} .add`);
+
+    if (addBtn) {
+        addBtn.addEventListener('click', () => {
+            points.value += 1;
+            
+        });
+    }
+});
 
 
 
@@ -50,7 +61,7 @@ const updateTeam = (value, teamName) => {
         </div>
         <div>
             <div class="points">
-                <p>0</p>
+                <p>{{points}}</p>
             </div>
         </div>
     </div>
