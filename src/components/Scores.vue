@@ -8,6 +8,8 @@ import { ref, onMounted } from 'vue';
 
 const props = defineProps(['teamName', 'socket']);
 
+console.log(props.socket);
+
 const parentSelectedTeam = ref('');
 
 const updateTeam = (value, teamName) => {
