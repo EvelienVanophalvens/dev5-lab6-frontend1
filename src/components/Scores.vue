@@ -2,9 +2,11 @@
 import DropdownTeam from './DropdownTeam.vue';
 import { ref, onMounted } from 'vue';
 
+
+
 //teamName
 
-const props = defineProps(['teamName']);
+const props = defineProps(['teamName', 'socket']);
 
 const parentSelectedTeam = ref('');
 
