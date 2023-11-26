@@ -45,6 +45,11 @@ onMounted(() => {
     if (addPenaltyBtn) {
         addPenaltyBtn.addEventListener('click', () => {
             points.value -= 1;
+            let point = {
+                teamName: props.teamName,
+                points: points.value
+            };
+            props.socket.send(JSON.stringify(point));
         });
     }
 
@@ -54,10 +59,19 @@ onMounted(() => {
     timeOutBtn.addEventListener('click', () => {
         // Set the initial value when the button is clicked
         timeout.innerHTML = 'timeout';
-
+        let timeOut = {
+            teamName: props.teamName,
+            timeout: true
+        };
+        props.socket.send(JSON.stringify(timeOut));
         // Reset the innerHTML to an empty string after 30 seconds
         setTimeout(() => {
             timeout.innerHTML = '';
+            let timeOut = {
+                teamName: props.teamName,
+                timeout: false
+            };
+        props.socket.send(JSON.stringify(timeOut));
         }, 30000);
     });
 
