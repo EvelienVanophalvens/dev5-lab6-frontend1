@@ -3,8 +3,8 @@
 </script>
 
 <template>
-    <div>
-    <label for="teams">Team 1:</label>
+    <div class="dropdown">
+    <label for="teams" id="label">Team:</label>
     <select name="teams" id="teams">
     <option value="wolvertem">Wolvertem Sporting</option>
     <option value="meiseA">VC Knodde Meise A</option>
@@ -23,4 +23,18 @@
 </template>
 
 <style scoped>
+    .dropdown {
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+    }
+    
+    #label {
+        font-size: 20px;
+        margin: 10px;
+    }
+    #teams {
+        font-size: 20px;
+        margin: 10px;
+    }
 </style>
