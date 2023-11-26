@@ -15,11 +15,12 @@ const updateTeam = (value, teamName) => {
   }
 };
 
-//points
+
 const points = ref(0);
 
 onMounted(() => {
-    const addBtn = document.querySelector(`.${props.teamName.toLowerCase()} .add`);
+    //points
+    const addBtn = document.querySelector(`.${props.teamName.toLowerCase()} .btn #addPoint`);
 
     if (addBtn) {
         addBtn.addEventListener('click', () => {
@@ -27,6 +28,14 @@ onMounted(() => {
             
         });
     }
+
+    const addPenaltyBtn = document.querySelector(`.${props.teamName.toLowerCase()} .btn #addPenalty`);
+    if (addPenaltyBtn) {
+        addPenaltyBtn.addEventListener('click', () => {
+            points.value -= 1;
+        });
+    }
+
 });
 
 
@@ -42,20 +51,20 @@ onMounted(() => {
         <div >
             <div class="btn">
                 <p> Add point</p>
-                <button class="add">
+                <button class="add" id="addPoint">
                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
                 </button>
             </div>
             <div class="btn">
                 <p> Add Penalty Point</p>
-                <div class="add">
+                <button class="add" id="addPenalty">
                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/></svg>
-                </div>
+                </button>
             </div>
         </div>
         <div class="btn">
             <p>Timeout</p>
-            <div class="add">
+            <div class="add" id="timeOut">
                 <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
             </div>
         </div>
