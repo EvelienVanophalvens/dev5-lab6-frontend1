@@ -18,7 +18,8 @@ const updateTeam = (value, teamName) => {
     console.log(`update team for ${props.teamName}: ${parentSelectedTeam.value}`);
     let team = {
       teamName: props.teamName,
-      selectedTeam: parentSelectedTeam.value
+      selectedTeam: parentSelectedTeam.value,
+      action: "updateTeam"
     };
     props.socket.send(JSON.stringify(team));
   }
@@ -36,7 +37,8 @@ onMounted(() => {
             points.value += 1;
             let point = {
                 teamName: props.teamName,
-                points: points.value
+                points: points.value,
+                action: "updatePoints"
             };
             props.socket.send(JSON.stringify(point));
             
@@ -49,7 +51,8 @@ onMounted(() => {
             points.value -= 1;
             let point = {
                 teamName: props.teamName,
-                points: points.value
+                points: points.value,
+                action: "updatePoints"
             };
             props.socket.send(JSON.stringify(point));
         });
@@ -63,7 +66,8 @@ onMounted(() => {
         timeout.innerHTML = 'timeout';
         let timeOut = {
             teamName: props.teamName,
-            timeout: true
+            timeout: true,
+            action: "updateTimeout"
         };
         props.socket.send(JSON.stringify(timeOut));
         // Reset the innerHTML to an empty string after 30 seconds
@@ -71,7 +75,8 @@ onMounted(() => {
             timeout.innerHTML = '';
             let timeOut = {
                 teamName: props.teamName,
-                timeout: false
+                timeout: false,
+                action: "updateTimeout"
             };
         props.socket.send(JSON.stringify(timeOut));
         }, 30000);
