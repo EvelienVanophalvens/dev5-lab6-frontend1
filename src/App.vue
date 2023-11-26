@@ -1,9 +1,9 @@
 <script setup>
-import Team from './components/Team.vue'
+import Scores from './components/Scores.vue'
 </script>
 
 <template>
-  <Team />
+  <Scores />
 </template>
 
 <style scoped>
