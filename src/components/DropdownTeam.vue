@@ -2,26 +2,25 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 
 //define emit
-const emit = defineEmits(['update:modelValue']);
 
 const props = defineProps(['teamName']);
 
 const selectedTeam = ref('');
 
-const handleChange = () => {
-    // Emit the value to the parent component
-    emit('update:modelValue', selectedTeam.value);
 
-};
 
 onMounted(() => {
-  // Attach the event listener for the change event
-  document.getElementById('teams').addEventListener('change', handleChange);
-});
+    const socket = new WebSocket('ws://localhost:3000/primus');
 
-// Cleanup the event listener when the component is unmounted
-onUnmounted(() => {
-  document.getElementById('teams').removeEventListener('change', handleChange);
+    document.querySelector('#teams').addEventListener('change', (e) => {
+        selectedTeam.value = e.target.value;
+        let team = {
+            teamName: props.teamName,
+            team: selectedTeam.value,
+            action: "updateTeam"
+        };
+        socket.send(JSON.stringify(team));
+    });
 });
 
 </script>

@@ -4,33 +4,26 @@ import { ref, onMounted } from 'vue';
 
 
 
-//teamName
+
 
 const props = defineProps(['teamName']);
 
-console.log(props.socket);
 
-const parentSelectedTeam = ref('');
 
-const updateTeam = (value, teamName) => {
-  if (teamName === props.teamName && parentSelectedTeam.value !== value) {
-    parentSelectedTeam.value = value;
-    console.log(`update team for ${props.teamName}: ${parentSelectedTeam.value}`);
-    let team = {
-      teamName: props.teamName,
-      selectedTeam: parentSelectedTeam.value,
-      action: "updateTeam"
-    };
-    props.socket.send(JSON.stringify(team));
-  }
-};
 
 
 const points = ref(0);
 
 onMounted(() => {
-    //points
+
+    
+
     const socket = new WebSocket('ws://localhost:3000/primus');
+
+    
+
+
+      //points
     const addBtn = document.querySelector(`.${props.teamName.toLowerCase()} .btn #addPoint`);
 
     if (addBtn) {
@@ -93,7 +86,7 @@ onMounted(() => {
 <template>
     <div :class="teamName">
     <p>{{teamName}}</p>
-    <DropdownTeam  @update:modelValue="value => updateTeam(value, teamName)"/>
+    <DropdownTeam  />
     </div>
     <div :class="teamName" class="info" >
         <div >
