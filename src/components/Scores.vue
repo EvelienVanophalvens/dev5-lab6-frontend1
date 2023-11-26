@@ -32,6 +32,11 @@ onMounted(() => {
     if (addBtn) {
         addBtn.addEventListener('click', () => {
             points.value += 1;
+            let point = {
+                teamName: props.teamName,
+                points: points.value
+            };
+            props.socket.send(JSON.stringify(point));
             
         });
     }
