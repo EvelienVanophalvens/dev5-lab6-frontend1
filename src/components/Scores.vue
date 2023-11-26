@@ -1,27 +1,15 @@
 <script setup>
-import DropdownTeam from './DropdownTeam.vue';
 import { ref, onMounted } from 'vue';
-
-
-
-
 
 const props = defineProps(['teamName']);
 
-
-
-
-
 const points = ref(0);
+
+const selectedTeam = ref('');
 
 onMounted(() => {
 
-    
-
     const socket = new WebSocket('ws://localhost:3000/primus');
-
-    
-
 
       //points
     const addBtn = document.querySelector(`.${props.teamName.toLowerCase()} .btn #addPoint`);
@@ -76,6 +64,19 @@ onMounted(() => {
         }, 30000);
     });
 
+    //set team
+    const team = document.querySelector(`.${props.teamName.toLowerCase()} #teams`);
+    team.addEventListener('change', () => {
+        let selectedTeam = team.value;
+        let newTeam = {
+            teamName: props.teamName,
+            selectedTeam: selectedTeam,
+            action: "updateTeam"
+        };
+       socket.send(JSON.stringify(newTeam));
+    });
+
+
 }
 });
 
@@ -84,11 +85,26 @@ onMounted(() => {
 </script>
 
 <template>
-    <div :class="teamName">
+    <div>
     <p>{{teamName}}</p>
-    <DropdownTeam  />
+    <div class="dropdown" :class="teamName">
+            <select v-model="selectedTeam" name="teams" id="teams">
+            <option value="wolvertem">Wolvertem Sporting</option>
+            <option value="meiseA">VC Knodde Meise A</option>
+            <option value="meiseB">VC Knodde Meise B</option>
+            <option value="gooik">Govok Cammaert Gooik B</option>
+            <option value="lennik">VC lennik Dames C</option>
+            <option value="hofstadeZemst">HZ 93 Hofstade-Zemst C</option>
+            <option value="opwijk">Volley Opwijk B</option>
+            <option value="halle">KLB Sonnenbeemd Halle</option>
+            <option value="zaventem">v.c. Zavath Zaventem A</option>
+            <option value="lot">Davoc Lot</option>
+            <option value="machelen">VBT Machelen B</option>
+            </select>
+        </div>
     </div>
     <div :class="teamName" class="info" >
+       
         <div >
             <div class="btn">
                 <p> Add point</p>
@@ -119,6 +135,14 @@ onMounted(() => {
 </template>
 
 <style scoped>
+    .dropdown select {
+        width: 100%;
+        height: 100%;
+        font-size: 20px;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 5px;
+    }
     .add {
         display: flex;
         border: 1px solid black;
