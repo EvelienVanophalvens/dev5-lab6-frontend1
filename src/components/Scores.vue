@@ -14,6 +14,11 @@ const updateTeam = (value, teamName) => {
   if (teamName === props.teamName && parentSelectedTeam.value !== value) {
     parentSelectedTeam.value = value;
     console.log(`update team for ${props.teamName}: ${parentSelectedTeam.value}`);
+    let team = {
+      teamName: props.teamName,
+      selectedTeam: parentSelectedTeam.value
+    };
+    props.socket.send(JSON.stringify(team));
   }
 };
 
@@ -50,6 +55,7 @@ onMounted(() => {
             timeout.innerHTML = '';
         }, 30000);
     });
+
 }
 });
 
