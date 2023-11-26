@@ -1,42 +1,39 @@
 <script setup>
 import DropdownTeam from './DropdownTeam.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 
 const props = defineProps(['teamName']);
 
+
+
 const parentSelectedTeam = ref('');
 
-
-const updateTeam = (value) => {
-    if (props.teamName == "Team B") {
-        if (value == "") {
-        }else{
-            console.log(value);
-        }
-
-    }else{
-        if (value == "") {
-        }else{
-            console.log(value);
-        }
-    }
+const updateTeam = (value, teamName) => {
+  if (teamName === props.teamName && parentSelectedTeam.value !== value) {
+    parentSelectedTeam.value = value;
+    console.log(`update team for ${props.teamName}: ${parentSelectedTeam.value}`);
+  }
 };
+
+
+    
+
 
 
 </script>
 
 <template>
-    <div>
+    <div :class="teamName">
     <p>{{teamName}}</p>
-    <DropdownTeam  @update:modelValue="updateTeam" />
+    <DropdownTeam  @update:modelValue="value => updateTeam(value, teamName)"/>
     </div>
-    <div class="info">
-        <div>
+    <div :class="teamName" class="info" >
+        <div >
             <div class="btn">
                 <p> Add point</p>
-                <div class="add">
+                <button class="add">
                     <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
-                </div>
+                </button>
             </div>
             <div class="btn">
                 <p> Add Penalty Point</p>
