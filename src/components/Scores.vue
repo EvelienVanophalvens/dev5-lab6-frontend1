@@ -1,11 +1,34 @@
 <script setup>
 import DropdownTeam from './DropdownTeam.vue';
+import { ref } from 'vue';
+
+const props = defineProps(['teamName']);
+
+const parentSelectedTeam = ref('');
+
+
+const updateTeam = (value) => {
+    if (props.teamName == "Team B") {
+        if (value == "") {
+        }else{
+            console.log(value);
+        }
+
+    }else{
+        if (value == "") {
+        }else{
+            console.log(value);
+        }
+    }
+};
+
 
 </script>
 
 <template>
     <div>
-    <DropdownTeam />
+    <p>{{teamName}}</p>
+    <DropdownTeam  @update:modelValue="updateTeam" />
     </div>
     <div class="info">
         <div>

@@ -6,10 +6,10 @@ import Scores from './components/Scores.vue'
 <template>
   <div id="teams">
     <div id="teamA">
-      <Scores />
+      <Scores teamName="Team A"/>
       </div>
     <div id="teamB">
-      <Scores />
+      <Scores teamName="Team B" />
     </div>
   </div>
 </template>
