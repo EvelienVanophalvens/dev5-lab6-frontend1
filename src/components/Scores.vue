@@ -36,6 +36,19 @@ onMounted(() => {
         });
     }
 
+    const timeOutBtn = document.querySelector(`.${props.teamName.toLowerCase()} #timeOut`);
+    const timeout = document.querySelector(`.${props.teamName.toLowerCase()} .timeout`);
+    if (timeOutBtn) {
+    timeOutBtn.addEventListener('click', () => {
+        // Set the initial value when the button is clicked
+        timeout.innerHTML = 'timeout';
+
+        // Reset the innerHTML to an empty string after 30 seconds
+        setTimeout(() => {
+            timeout.innerHTML = '';
+        }, 30000);
+    });
+}
 });
 
 
@@ -73,6 +86,7 @@ onMounted(() => {
                 <p>{{points}}</p>
             </div>
         </div>
+        <div class="timeout"></div>
     </div>
 </template>
 
@@ -109,6 +123,16 @@ onMounted(() => {
         display: flex;
         flex-direction: row;
         align-items: center;
+    }
+
+    .timeout {
+        display: flex;
+        width: 100px;
+        height: 50px;
+        align-items: center;
+        justify-content: center;
+        margin: 20px;
+        font-size: 40px;
     }
 
 </style>
