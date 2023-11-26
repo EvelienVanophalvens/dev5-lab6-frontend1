@@ -9,7 +9,7 @@ const selectedTeam = ref('');
 
 onMounted(() => {
 
-    const socket = new WebSocket('ws://localhost:3000/primus');
+    const socket = new WebSocket('wss://lab6-o1wp.onrender.com/primus');
 
       //points
     const addBtn = document.querySelector(`.${props.teamName.toLowerCase()} .btn #addPoint`);
@@ -89,17 +89,17 @@ onMounted(() => {
     <p>{{teamName}}</p>
     <div class="dropdown" :class="teamName">
             <select v-model="selectedTeam" name="teams" id="teams">
-            <option value="wolvertem">Wolvertem Sporting</option>
-            <option value="meiseA">VC Knodde Meise A</option>
-            <option value="meiseB">VC Knodde Meise B</option>
-            <option value="gooik">Govok Cammaert Gooik B</option>
-            <option value="lennik">VC lennik Dames C</option>
-            <option value="hofstadeZemst">HZ 93 Hofstade-Zemst C</option>
-            <option value="opwijk">Volley Opwijk B</option>
-            <option value="halle">KLB Sonnenbeemd Halle</option>
-            <option value="zaventem">v.c. Zavath Zaventem A</option>
-            <option value="lot">Davoc Lot</option>
-            <option value="machelen">VBT Machelen B</option>
+            <option value="Wolvertem Sporting">Wolvertem Sporting</option>
+            <option value="VC Knodde Meise A">VC Knodde Meise A</option>
+            <option value="VC Knodde Meise B">VC Knodde Meise B</option>
+            <option value="Govok Cammaert Gooik B">Govok Cammaert Gooik B</option>
+            <option value="VC lennik Dames C">VC lennik Dames C</option>
+            <option value="HZ 93 Hofstade-Zemst C">HZ 93 Hofstade-Zemst C</option>
+            <option value="Volley Opwijk B">Volley Opwijk B</option>
+            <option value="KLB Sonnenbeemd Halle">KLB Sonnenbeemd Halle</option>
+            <option value="v.c. Zavath Zaventem A">v.c. Zavath Zaventem A</option>
+            <option value="Davoc Lot">Davoc Lot</option>
+            <option value="VBT Machelen B">VBT Machelen B</option>
             </select>
         </div>
     </div>
