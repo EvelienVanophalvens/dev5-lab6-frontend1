@@ -10,6 +10,10 @@ const selectedTeam = ref('');
 onMounted(() => {
 
     const socket = new WebSocket('wss://lab6-o1wp.onrender.com/primus');
+    //check if connection is open
+    socket.onopen = function(e) {
+        console.log("Connection established");
+    };
 
       //points
     const addBtn = document.querySelector(`.${props.teamName.toLowerCase()} .btn #addPoint`);
